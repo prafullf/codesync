@@ -1,0 +1,87 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String       @id @default(cuid())
+  email        String       @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime     @default(now())
+  rooms        RoomMember[]
+  runs         Run[]
+}
+
+model Room {
+  id        String       @id @default(cuid())
+  name      String
+  language  Language     @default(PYTHON)
+  ownerId   String
+  createdAt DateTime     @default(now())
+  members   RoomMember[]
+  runs      Run[]
+  snapshot  DocSnapshot?
+}
+
+model RoomMember {
+  userId   String
+  roomId   String
+  role     Role     @default(EDITOR)
+  joinedAt DateTime @default(now())
+  user     User     @relation(fields: [userId], references: [id])
+  room     Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roomId])
+}
+
+model DocSnapshot {
+  roomId    String   @id
+  state     Bytes // Y.encodeStateAsUpdate(doc)
+  updatedAt DateTime @updatedAt
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+}
+
+model Run {
+  id         String    @id @default(cuid())
+  roomId     String
+  userId     String
+  language   Language
+  code       String
+  status     RunStatus @default(QUEUED)
+  stdout     String?
+  stderr     String?
+  exitCode   Int?
+  durationMs Int?
+  createdAt  DateTime  @default(now())
+  finishedAt DateTime?
+  room       Room      @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  user       User      @relation(fields: [userId], references: [id])
+
+  @@index([roomId, createdAt])
+}
+
+enum Language {
+  PYTHON
+  JAVASCRIPT
+  CPP
+}
+
+enum Role {
+  OWNER
+  EDITOR
+  VIEWER
+}
+
+enum RunStatus {
+  QUEUED
+  RUNNING
+  SUCCESS
+  ERROR
+  TIMEOUT
+}

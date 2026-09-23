@@ -1,0 +1,4 @@
+pnpm-lock.yaml
+**/dist
+**/migrations
+PROJECT_SPEC.md
