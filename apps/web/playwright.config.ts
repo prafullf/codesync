@@ -2,6 +2,8 @@ import { defineConfig } from '@playwright/test';
 
 /**
  * E2E against a running stack: `docker compose up -d && pnpm dev` first.
+ * Each test signs up new users, so start the API with a higher auth limit:
+ *   AUTH_RATE_LIMIT_PER_MIN=1000 pnpm dev
  * (API, worker and Docker sandboxes are all involved, so we don't boot them here.)
  */
 export default defineConfig({
@@ -9,6 +11,7 @@ export default defineConfig({
   timeout: 60_000,
   expect: { timeout: 10_000 },
   fullyParallel: false,
+  workers: 1,
   retries: 0,
   reporter: [['list']],
   use: {
