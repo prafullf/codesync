@@ -75,7 +75,11 @@ describe('rooms', () => {
     const roomId = await createRoom(ctx, owner.cookie);
     const results = await Promise.all(
       Array.from({ length: 5 }, () =>
-        ctx.app.inject({ method: 'POST', url: `/api/rooms/${roomId}/join`, headers: { cookie: guest.cookie } }),
+        ctx.app.inject({
+          method: 'POST',
+          url: `/api/rooms/${roomId}/join`,
+          headers: { cookie: guest.cookie },
+        }),
       ),
     );
     expect(results.map((r) => r.statusCode)).toEqual([200, 200, 200, 200, 200]);
@@ -96,7 +100,11 @@ describe('rooms', () => {
     const owner = await signup(ctx);
     const editor = await signup(ctx);
     const roomId = await createRoom(ctx, owner.cookie);
-    await ctx.app.inject({ method: 'POST', url: `/api/rooms/${roomId}/join`, headers: { cookie: editor.cookie } });
+    await ctx.app.inject({
+      method: 'POST',
+      url: `/api/rooms/${roomId}/join`,
+      headers: { cookie: editor.cookie },
+    });
 
     const denied = await ctx.app.inject({
       method: 'PATCH',

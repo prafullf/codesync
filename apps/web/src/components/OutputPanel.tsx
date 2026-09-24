@@ -46,7 +46,9 @@ export function OutputPanel({ tab, onTabChange, active, history, onSelect }: Pro
             aria-selected={tab === t}
             onClick={() => onTabChange(t)}
             className={`border-b-2 px-3 py-2 text-sm capitalize ${
-              tab === t ? 'border-indigo-500 text-zinc-100' : 'border-transparent text-zinc-400 hover:text-zinc-200'
+              tab === t
+                ? 'border-indigo-500 text-zinc-100'
+                : 'border-transparent text-zinc-400 hover:text-zinc-200'
             }`}
           >
             {t}
@@ -58,8 +60,8 @@ export function OutputPanel({ tab, onTabChange, active, history, onSelect }: Pro
         <div className="min-h-0 flex-1 overflow-auto p-3" data-testid="output-panel">
           {!active ? (
             <p className="text-sm text-zinc-500">
-              Press <kbd className="rounded bg-zinc-800 px-1">Ctrl/⌘ + Enter</kbd> or click Run. Output is shared
-              with everyone in the room.
+              Press <kbd className="rounded bg-zinc-800 px-1">Ctrl/⌘ + Enter</kbd> or click Run. Output is
+              shared with everyone in the room.
             </p>
           ) : (
             <div className="space-y-3">
@@ -72,18 +74,24 @@ export function OutputPanel({ tab, onTabChange, active, history, onSelect }: Pro
                 {active.exitCode != null && <span>· exit {active.exitCode}</span>}
               </div>
               {active.stdout ? (
-                <pre className="whitespace-pre-wrap break-words font-mono text-sm text-zinc-100" data-testid="stdout">
+                <pre
+                  className="whitespace-pre-wrap break-words font-mono text-sm text-zinc-100"
+                  data-testid="stdout"
+                >
                   {active.stdout}
                 </pre>
               ) : null}
               {active.stderr ? (
-                <pre className="whitespace-pre-wrap break-words font-mono text-sm text-rose-300" data-testid="stderr">
+                <pre
+                  className="whitespace-pre-wrap break-words font-mono text-sm text-rose-300"
+                  data-testid="stderr"
+                >
                   {active.stderr}
                 </pre>
               ) : null}
-              {(active.status === 'SUCCESS' || active.status === 'ERROR') && !active.stdout && !active.stderr && (
-                <p className="text-sm italic text-zinc-500">(no output)</p>
-              )}
+              {(active.status === 'SUCCESS' || active.status === 'ERROR') &&
+                !active.stdout &&
+                !active.stderr && <p className="text-sm italic text-zinc-500">(no output)</p>}
             </div>
           )}
         </div>

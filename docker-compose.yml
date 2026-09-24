@@ -36,8 +36,12 @@ services:
       dockerfile: apps/server/Dockerfile
     env_file: .env
     environment:
+      NODE_ENV: production
       DATABASE_URL: postgresql://codesync:codesync@postgres:5432/codesync
       REDIS_URL: redis://redis:6379
+      # Overridable from the shell, e.g. for load tests that sign up many users from one IP.
+      AUTH_RATE_LIMIT_PER_MIN: ${AUTH_RATE_LIMIT_PER_MIN:-5}
+      RUN_RATE_LIMIT_PER_MIN: ${RUN_RATE_LIMIT_PER_MIN:-10}
     ports:
       - '4000:4000'
     depends_on:
@@ -53,6 +57,7 @@ services:
       dockerfile: apps/worker/Dockerfile
     env_file: .env
     environment:
+      NODE_ENV: production
       DATABASE_URL: postgresql://codesync:codesync@postgres:5432/codesync
       REDIS_URL: redis://redis:6379
     # The worker talks to the host Docker daemon to spawn sandbox containers.

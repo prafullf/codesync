@@ -61,7 +61,9 @@ export function RoomPage() {
             if (!cancelled) setLoadError(errorMessage(joinErr));
           }
         } else if (!cancelled) {
-          setLoadError(err instanceof ApiError && err.status === 404 ? 'This room does not exist.' : errorMessage(err));
+          setLoadError(
+            err instanceof ApiError && err.status === 404 ? 'This room does not exist.' : errorMessage(err),
+          );
         }
       }
     })();
@@ -209,9 +211,13 @@ export function RoomPage() {
             ))}
           </select>
         ) : (
-          <span className="rounded-md bg-zinc-800 px-2 py-1 text-xs text-zinc-300">{LANGUAGE_LABELS[room.language]}</span>
+          <span className="rounded-md bg-zinc-800 px-2 py-1 text-xs text-zinc-300">
+            {LANGUAGE_LABELS[room.language]}
+          </span>
         )}
-        {isViewer && <span className="rounded-md bg-amber-500/15 px-2 py-1 text-xs text-amber-300">View only</span>}
+        {isViewer && (
+          <span className="rounded-md bg-amber-500/15 px-2 py-1 text-xs text-amber-300">View only</span>
+        )}
 
         <div className="ml-auto flex items-center gap-3">
           <ConnectionIndicator online={online} />

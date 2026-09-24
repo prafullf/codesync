@@ -3,7 +3,8 @@ import { defineConfig } from 'vitest/config';
 const testEnv = {
   NODE_ENV: 'test',
   LOG_LEVEL: 'silent',
-  DATABASE_URL: process.env.TEST_DATABASE_URL ?? 'postgresql://codesync:codesync@localhost:5432/codesync_test',
+  DATABASE_URL:
+    process.env.TEST_DATABASE_URL ?? 'postgresql://codesync:codesync@localhost:5432/codesync_test',
   REDIS_URL: process.env.TEST_REDIS_URL ?? 'redis://localhost:6379/1',
   JWT_SECRET: 'test-secret-test-secret-test-secret-123',
   WEB_ORIGIN: 'http://localhost:5173',

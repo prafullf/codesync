@@ -46,7 +46,10 @@ async function main(): Promise<void> {
     RUN_QUEUE_NAME,
     async (job: Job<RunJobData>) => {
       const { runId } = runJobDataSchema.parse(job.data);
-      await processRun(runId, { ...deps, log: log.child({ runId, jobId: job.id, attempt: job.attemptsMade + 1 }) });
+      await processRun(runId, {
+        ...deps,
+        log: log.child({ runId, jobId: job.id, attempt: job.attemptsMade + 1 }),
+      });
     },
     { connection, concurrency: env.WORKER_CONCURRENCY },
   );

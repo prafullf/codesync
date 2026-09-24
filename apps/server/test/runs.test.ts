@@ -121,7 +121,11 @@ describe('run history', () => {
       });
       ids.push(res.json<{ runId: string }>().runId);
     }
-    const list = await ctx.app.inject({ method: 'GET', url: `${runUrl(roomId)}?limit=2`, headers: { cookie } });
+    const list = await ctx.app.inject({
+      method: 'GET',
+      url: `${runUrl(roomId)}?limit=2`,
+      headers: { cookie },
+    });
     expect(list.statusCode).toBe(200);
     const runs = list.json<{ runs: { id: string; userName: string }[] }>().runs;
     expect(runs.map((r) => r.id)).toEqual([ids[2], ids[1]]);
@@ -160,7 +164,11 @@ describe('health', () => {
   });
 
   it('echoes a request id on every response', async () => {
-    const res = await ctx.app.inject({ method: 'GET', url: '/health', headers: { 'x-request-id': 'abc-123' } });
+    const res = await ctx.app.inject({
+      method: 'GET',
+      url: '/health',
+      headers: { 'x-request-id': 'abc-123' },
+    });
     expect(res.headers['x-request-id']).toBe('abc-123');
   });
 });

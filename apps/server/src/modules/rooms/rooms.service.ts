@@ -1,11 +1,5 @@
 import type { Room } from '@codesync/db';
-import type {
-  CreateRoomBody,
-  Role,
-  RoomDetails,
-  RoomSummary,
-  UpdateRoomBody,
-} from '@codesync/shared';
+import type { CreateRoomBody, Role, RoomDetails, RoomSummary, UpdateRoomBody } from '@codesync/shared';
 import { errors } from '../../lib/errors';
 import type { EventBus } from '../../lib/event-bus';
 import { hasAtLeastRole } from './roles';
@@ -77,7 +71,9 @@ export class RoomService {
     const role = await this.rooms.getRole(userId, roomId);
     if (!role) {
       const exists = await this.rooms.findById(roomId);
-      throw exists ? errors.forbidden('You are not a member of this room') : errors.notFound('Room not found');
+      throw exists
+        ? errors.forbidden('You are not a member of this room')
+        : errors.notFound('Room not found');
     }
     if (!hasAtLeastRole(role, required)) {
       throw errors.forbidden(`This action requires the ${required} role`);

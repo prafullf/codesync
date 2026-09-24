@@ -3,11 +3,7 @@ import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 import { Spinner } from '../components/Spinner';
 import { errorMessage } from '../lib/errors';
-
-/** Only allow in-app redirects after login (prevents open-redirects via ?next=). */
-function safeNext(raw: string | null): string {
-  return raw && raw.startsWith('/') && !raw.startsWith('//') ? raw : '/dashboard';
-}
+import { safeNext } from '../lib/links';
 
 export function AuthPage({ mode }: { mode: 'login' | 'signup' }) {
   const { user, login, signup } = useAuth();

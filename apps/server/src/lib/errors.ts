@@ -16,8 +16,7 @@ export class AppError extends Error {
 
 export const errors = {
   validation: (message: string) => new AppError(400, ERROR_CODES.VALIDATION_ERROR, message),
-  unauthorized: (message = 'Authentication required') =>
-    new AppError(401, ERROR_CODES.UNAUTHORIZED, message),
+  unauthorized: (message = 'Authentication required') => new AppError(401, ERROR_CODES.UNAUTHORIZED, message),
   forbidden: (message = 'You do not have access to this resource') =>
     new AppError(403, ERROR_CODES.FORBIDDEN, message),
   notFound: (message = 'Not found') => new AppError(404, ERROR_CODES.NOT_FOUND, message),

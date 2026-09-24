@@ -50,7 +50,11 @@ export class DockerSandboxRunner implements SandboxRunner {
   async run(input: { runId: string; language: Language; code: string }): Promise<ExecutionResult> {
     // A fresh container for every run: nothing leaks between runs or users.
     const container = await this.docker.createContainer(
-      buildContainerOptions({ language: input.language, runId: input.runId, imagePrefix: this.opts.imagePrefix }),
+      buildContainerOptions({
+        language: input.language,
+        runId: input.runId,
+        imagePrefix: this.opts.imagePrefix,
+      }),
     );
 
     const stdout = new BoundedOutput(this.maxOutputBytes);

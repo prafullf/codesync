@@ -7,14 +7,7 @@ import { Logo } from '../components/Logo';
 import { Spinner } from '../components/Spinner';
 import { api } from '../lib/api';
 import { errorMessage } from '../lib/errors';
-
-/** Accepts a full invite link or a bare room id. */
-function roomIdFromInput(input: string): string | null {
-  const trimmed = input.trim();
-  const match = /\/room\/([A-Za-z0-9_-]+)/.exec(trimmed);
-  if (match?.[1]) return match[1];
-  return /^[A-Za-z0-9_-]+$/.test(trimmed) ? trimmed : null;
-}
+import { roomIdFromInput } from '../lib/links';
 
 export function DashboardPage() {
   const { user, logout } = useAuth();

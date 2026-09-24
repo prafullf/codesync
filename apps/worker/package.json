@@ -13,6 +13,7 @@
   "dependencies": {
     "@codesync/db": "workspace:*",
     "@codesync/shared": "workspace:*",
+    "@prisma/client": "^5.22.0",
     "bullmq": "^5.30.0",
     "dockerode": "^4.0.2",
     "ioredis": "^5.4.1",

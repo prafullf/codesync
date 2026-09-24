@@ -44,7 +44,13 @@ describe('processRun', () => {
   });
 
   it('treats user-code errors as a normal result (no throw -> no retry)', async () => {
-    const result: ExecutionResult = { status: 'ERROR', stdout: '', stderr: 'boom', exitCode: 1, durationMs: 5 };
+    const result: ExecutionResult = {
+      status: 'ERROR',
+      stdout: '',
+      stderr: 'boom',
+      exitCode: 1,
+      durationMs: 5,
+    };
     const { deps, events } = setup({ runner: { run: async () => result } });
     await expect(processRun('r1', deps)).resolves.toBeUndefined();
     expect(events.at(-1)?.status).toBe('ERROR');

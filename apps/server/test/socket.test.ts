@@ -56,7 +56,11 @@ describe('socket.io', () => {
     const owner = await signup(ctx, 'Owner');
     const guest = await signup(ctx, 'Guest');
     const roomId = await createRoom(ctx, owner.cookie);
-    await ctx.app.inject({ method: 'POST', url: `/api/rooms/${roomId}/join`, headers: { cookie: guest.cookie } });
+    await ctx.app.inject({
+      method: 'POST',
+      url: `/api/rooms/${roomId}/join`,
+      headers: { cookie: guest.cookie },
+    });
 
     const a = connect(owner.cookie);
     const b = connect(guest.cookie);

@@ -49,7 +49,8 @@ export function useCollab(
         if (clientId === doc.clientID) return;
         const remote = state.user as { name?: unknown; color?: unknown } | undefined;
         // Awareness state comes from other browsers: never trust it inside CSS.
-        const color = typeof remote?.color === 'string' && HEX_COLOR.test(remote.color) ? remote.color : '#a1a1aa';
+        const color =
+          typeof remote?.color === 'string' && HEX_COLOR.test(remote.color) ? remote.color : '#a1a1aa';
         const name = typeof remote?.name === 'string' ? remote.name.slice(0, 40) : 'Anonymous';
         css += `
           .yRemoteSelection-${clientId} { background-color: ${color}40; }

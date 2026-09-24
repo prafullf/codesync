@@ -78,7 +78,11 @@ describe('yjs websocket server', () => {
     const owner = await signup(ctx, 'A');
     const guest = await signup(ctx, 'B');
     const roomId = await createRoom(ctx, owner.cookie);
-    await ctx.app.inject({ method: 'POST', url: `/api/rooms/${roomId}/join`, headers: { cookie: guest.cookie } });
+    await ctx.app.inject({
+      method: 'POST',
+      url: `/api/rooms/${roomId}/join`,
+      headers: { cookie: guest.cookie },
+    });
 
     const a = connect(roomId, owner.cookie);
     const b = connect(roomId, guest.cookie);

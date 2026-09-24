@@ -1,4 +1,11 @@
-import { Prisma, type Language, type PrismaClient, type Role, type Room, type RoomMember } from '@codesync/db';
+import {
+  Prisma,
+  type Language,
+  type PrismaClient,
+  type Role,
+  type Room,
+  type RoomMember,
+} from '@codesync/db';
 
 export type RoomWithRole = Room & { role: Role };
 export type RoomWithMembers = Room & {
