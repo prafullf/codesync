@@ -1,4 +1,4 @@
-import type { Language, PrismaClient, Role, Room, RoomMember } from '@codesync/db';
+import { Prisma, type Language, type PrismaClient, type Role, type Room, type RoomMember } from '@codesync/db';
 
 export type RoomWithRole = Room & { role: Role };
 export type RoomWithMembers = Room & {
@@ -50,15 +50,26 @@ export class RoomRepository {
     return member?.role ?? null;
   }
 
-  /** Idempotent: joining twice keeps the existing role. */
+  /**
+   * Idempotent: joining twice keeps the existing role. Two concurrent joins can
+   * both miss the row and race to insert; the loser gets P2002 and just reads it.
+   */
   async addMember(userId: string, roomId: string, role: Role): Promise<Role> {
-    const member = await this.prisma.roomMember.upsert({
-      where: { userId_roomId: { userId, roomId } },
-      create: { userId, roomId, role },
-      update: {},
-      select: { role: true },
-    });
-    return member.role;
+    try {
+      const member = await this.prisma.roomMember.upsert({
+        where: { userId_roomId: { userId, roomId } },
+        create: { userId, roomId, role },
+        update: {},
+        select: { role: true },
+      });
+      return member.role;
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
+        const existing = await this.getRole(userId, roomId);
+        if (existing) return existing;
+      }
+      throw err;
+    }
   }
 
   update(roomId: string, data: { name?: string; language?: Language }): Promise<Room> {

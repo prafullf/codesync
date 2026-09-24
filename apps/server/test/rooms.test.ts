@@ -69,6 +69,18 @@ describe('rooms', () => {
     }
   });
 
+  it('concurrent joins by the same user do not fail (race-safe)', async () => {
+    const owner = await signup(ctx);
+    const guest = await signup(ctx);
+    const roomId = await createRoom(ctx, owner.cookie);
+    const results = await Promise.all(
+      Array.from({ length: 5 }, () =>
+        ctx.app.inject({ method: 'POST', url: `/api/rooms/${roomId}/join`, headers: { cookie: guest.cookie } }),
+      ),
+    );
+    expect(results.map((r) => r.statusCode)).toEqual([200, 200, 200, 200, 200]);
+  });
+
   it('owner joining their own room stays OWNER', async () => {
     const owner = await signup(ctx);
     const roomId = await createRoom(ctx, owner.cookie);
