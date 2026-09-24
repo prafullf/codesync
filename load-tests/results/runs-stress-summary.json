@@ -1,0 +1,312 @@
+{
+  "root_group": {
+    "id": "d41d8cd98f00b204e9800998ecf8427e",
+    "groups": {
+      "setup": {
+        "name": "setup",
+        "path": "::setup",
+        "id": "5c0f8025f7e0b6654089e5b00e950f1a",
+        "groups": {},
+        "checks": {
+          "signup 201": {
+            "id": "5aec97d011cf16332b1e99836e0f519a",
+            "passes": 30,
+            "fails": 0,
+            "name": "signup 201",
+            "path": "::setup::signup 201"
+          },
+          "room 201": {
+            "path": "::setup::room 201",
+            "id": "8f28a9a8f1e32bdb92e18c5a55285d36",
+            "passes": 30,
+            "fails": 0,
+            "name": "room 201"
+          }
+        }
+      }
+    },
+    "checks": {
+      "run accepted (202)": {
+        "name": "run accepted (202)",
+        "path": "::run accepted (202)",
+        "id": "8371f43d6700c7b356f5886ef57c63e3",
+        "passes": 736,
+        "fails": 0
+      }
+    },
+    "name": "",
+    "path": ""
+  },
+  "metrics": {
+    "vus_max": {
+      "max": 100,
+      "value": 100,
+      "min": 40
+    },
+    "http_req_failed": {
+      "passes": 0,
+      "fails": 18316,
+      "thresholds": {
+        "rate<0.01": false
+      },
+      "value": 0
+    },
+    "http_reqs": {
+      "count": 18316,
+      "rate": 258.1420909761989
+    },
+    "http_req_waiting": {
+      "min": 1.55475,
+      "med": 164.05029150000001,
+      "max": 2074.697793,
+      "p(90)": 340.9005005,
+      "p(95)": 491.94490624999895,
+      "avg": 194.99475475889943
+    },
+    "http_req_blocked": {
+      "avg": 0.05550905705394198,
+      "min": 0.000625,
+      "med": 0.002834,
+      "max": 107.587625,
+      "p(90)": 0.011166,
+      "p(95)": 0.01929125
+    },
+    "http_req_tls_handshaking": {
+      "p(95)": 0,
+      "avg": 0,
+      "min": 0,
+      "med": 0,
+      "max": 0,
+      "p(90)": 0
+    },
+    "checks": {
+      "passes": 796,
+      "fails": 0,
+      "value": 1
+    },
+    "run_turnaround_ms": {
+      "p(90)": 14116.5,
+      "p(95)": 14923,
+      "avg": 7327.092391304348,
+      "min": 428,
+      "med": 7721,
+      "max": 15584
+    },
+    "data_received": {
+      "count": 12142194,
+      "rate": 171129.68706042023
+    },
+    "iterations": {
+      "count": 736,
+      "rate": 10.373038816252588
+    },
+    "http_req_duration{expected_response:true}": {
+      "min": 1.577042,
+      "med": 164.17085450000002,
+      "max": 2075.418793,
+      "p(90)": 340.968542,
+      "p(95)": 493.0655934999998,
+      "avg": 195.28833181109425
+    },
+    "http_req_sending": {
+      "p(95)": 0.23119799999999976,
+      "avg": 0.15786805639877552,
+      "min": 0.002,
+      "med": 0.009958,
+      "max": 103.621334,
+      "p(90)": 0.06747950000000003
+    },
+    "vus": {
+      "value": 16,
+      "min": 0,
+      "max": 100
+    },
+    "run_success": {
+      "passes": 736,
+      "fails": 0,
+      "thresholds": {
+        "rate>0.99": false
+      },
+      "value": 1
+    },
+    "http_req_receiving": {
+      "avg": 0.13570899579602513,
+      "min": 0.00525,
+      "med": 0.024042,
+      "max": 60.009583,
+      "p(90)": 0.1405,
+      "p(95)": 0.3435312499999999
+    },
+    "data_sent": {
+      "rate": 87958.9578015645,
+      "count": 6240967
+    },
+    "runs_completed": {
+      "count": 736,
+      "rate": 10.373038816252588
+    },
+    "http_req_duration{name:create_run}": {
+      "avg": 201.01365395516322,
+      "min": 4.1945,
+      "med": 120.80407650000001,
+      "max": 2075.418793,
+      "p(90)": 419.6180210000001,
+      "p(95)": 749.6941352499999,
+      "thresholds": {
+        "p(95)<500": true
+      }
+    },
+    "dropped_iterations": {
+      "count": 465,
+      "rate": 6.553618273855236
+    },
+    "http_req_connecting": {
+      "avg": 0.01778561105044769,
+      "min": 0,
+      "med": 0,
+      "max": 46.023917,
+      "p(90)": 0,
+      "p(95)": 0
+    },
+    "iteration_duration": {
+      "p(90)": 14116.843860500001,
+      "p(95)": 14924.31625675,
+      "avg": 7328.0562059375,
+      "min": 427.878208,
+      "med": 7720.493691,
+      "max": 15584.835799
+    },
+    "http_req_duration": {
+      "avg": 195.28833181109425,
+      "min": 1.577042,
+      "med": 164.17085450000002,
+      "max": 2075.418793,
+      "p(90)": 340.968542,
+      "p(95)": 493.0655934999998
+    }
+  },
+  "setup_data": {
+    "users": [
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDAiLCJpYXQiOjE3OTAyMTkwNjksImV4cCI6MTc5MDgyMzg2OSwic3ViIjoiY211ZXk3bWwxMDAwMGIzbHJhamdodGIyZyJ9.QLNQqJRrSzAz3kp7RlrZ492pJSaBLnRH7HtcIL9dOO4",
+        "roomId": "cmuey7mlb0001b3lrnpl0dppf"
+      },
+      {
+        "roomId": "cmuey7mnu0003b3lr87s9z6hp",
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDEiLCJpYXQiOjE3OTAyMTkwNjksImV4cCI6MTc5MDgyMzg2OSwic3ViIjoiY211ZXk3bW5xMDAwMmIzbHI0Y3hsb29nZyJ9.UUuqjPmE6znghFVdceKbe6Rw1-1TbgvptAFWxztj2I8"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDIiLCJpYXQiOjE3OTAyMTkwNjksImV4cCI6MTc5MDgyMzg2OSwic3ViIjoiY211ZXk3bXB0MDAwNGIzbHI3ZmtiM2tmOCJ9.0lYshuBYDAT1VB3ZN5hGRQnlu5OnSnzvm73b2pg2K1I",
+        "roomId": "cmuey7mpw0005b3lrwbunck53"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDMiLCJpYXQiOjE3OTAyMTkwNjksImV4cCI6MTc5MDgyMzg2OSwic3ViIjoiY211ZXk3bXJzMDAwNmIzbHJzOG5vNWxqcSJ9.wSOBUgkWBs7D-aiW3DgOaIPB-tibd1OOySvoqRskAB8",
+        "roomId": "cmuey7mrw0007b3lragiot9oa"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDQiLCJpYXQiOjE3OTAyMTkwNjksImV4cCI6MTc5MDgyMzg2OSwic3ViIjoiY211ZXk3bXRyMDAwOGIzbHJjdXc4ZXBqciJ9.UC6pOYpRcOnLKI2b3YSZ-v2V45tuWqnbB0cZNav0IDs",
+        "roomId": "cmuey7mtu0009b3lrqn8pxgob"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDUiLCJpYXQiOjE3OTAyMTkwNjksImV4cCI6MTc5MDgyMzg2OSwic3ViIjoiY211ZXk3bXZzMDAwYWIzbHJjMXNyYnFwaCJ9.UKE9ZI2WKWUDOIT8Djm1hfAxeFSBCiIY-iaWtOxfIOQ",
+        "roomId": "cmuey7mvv000bb3lrblm8hka5"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDYiLCJpYXQiOjE3OTAyMTkwNjksImV4cCI6MTc5MDgyMzg2OSwic3ViIjoiY211ZXk3bXhyMDAwY2IzbHIxdmVrc25laSJ9.wJL2lAM9SmZ7uEuuU_ugOMzg2S1sVr0Ad2nTg8AGRR0",
+        "roomId": "cmuey7mxu000db3lrspb5utrm"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDciLCJpYXQiOjE3OTAyMTkwNjksImV4cCI6MTc5MDgyMzg2OSwic3ViIjoiY211ZXk3bXpxMDAwZWIzbHJtbGV5cTc1MSJ9.j9pvLzYM7PmVw1WTJniJ7kq4V2weu7qCAui6Y_iw2Fg",
+        "roomId": "cmuey7mzs000fb3lre30p08u4"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDgiLCJpYXQiOjE3OTAyMTkwNzAsImV4cCI6MTc5MDgyMzg3MCwic3ViIjoiY211ZXk3bjFvMDAwZ2IzbHJiOGRueG1peCJ9.T6oDwMEcMsQWWKyLVQKmc81-IRhh4j99j4ddiE2ZaGs",
+        "roomId": "cmuey7n1q000hb3lr1gd8ibjm"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDkiLCJpYXQiOjE3OTAyMTkwNzAsImV4cCI6MTc5MDgyMzg3MCwic3ViIjoiY211ZXk3bjNtMDAwaWIzbHIxdmZ5bmVsYSJ9.auMr-hW1jzqLIjhA466pawbyVLIbRrfKqEeZ23qlOX8",
+        "roomId": "cmuey7n3o000jb3lrkd9andsq"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDEwIiwiaWF0IjoxNzkwMjE5MDcwLCJleHAiOjE3OTA4MjM4NzAsInN1YiI6ImNtdWV5N241azAwMGtiM2xyOHdqZXptM3UifQ.K3uYL27xI98DNsS5HHNrQbG-2EO7hr0sa5F48xyAw3w",
+        "roomId": "cmuey7n5n000lb3lr525hmx59"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDExIiwiaWF0IjoxNzkwMjE5MDcwLCJleHAiOjE3OTA4MjM4NzAsInN1YiI6ImNtdWV5N243azAwMG1iM2xyc2dpdDNqdjAifQ.ZozmayhYoRMhp2rvBsfSGH9lhATDJDz24u0ZkbrD_Qw",
+        "roomId": "cmuey7n7m000nb3lrbl3nkxjt"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDEyIiwiaWF0IjoxNzkwMjE5MDcwLCJleHAiOjE3OTA4MjM4NzAsInN1YiI6ImNtdWV5N245ajAwMG9iM2xycTd3NmNhcnMifQ.aagzzP2ESmX3Gz1NM59nCNZhdR16U005p2aGnicirO8",
+        "roomId": "cmuey7n9l000pb3lrtdop2tyb"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDEzIiwiaWF0IjoxNzkwMjE5MDcwLCJleHAiOjE3OTA4MjM4NzAsInN1YiI6ImNtdWV5N25iZzAwMHFiM2xyd3hyeDZpaWgifQ.UFwKrJ7yPV9ytFgeLBhEwuW2RH08m402tpEPmC7N1D8",
+        "roomId": "cmuey7nbj000rb3lrhosrr26l"
+      },
+      {
+        "roomId": "cmuey7ndf000tb3lr9ohlu0zy",
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDE0IiwiaWF0IjoxNzkwMjE5MDcwLCJleHAiOjE3OTA4MjM4NzAsInN1YiI6ImNtdWV5N25kZDAwMHNiM2xyNjNxeXluYnAifQ.VRb7_PGMaqIaa7laFTsy-oKXyNw9uU5WMrgbs6A7sqM"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDE1IiwiaWF0IjoxNzkwMjE5MDcwLCJleHAiOjE3OTA4MjM4NzAsInN1YiI6ImNtdWV5N25mOTAwMHViM2xycTdnNjNieXgifQ.CR89SF8mhdH-TYzYCsBuNnye5G4W0k2LCUYgrwH-7G0",
+        "roomId": "cmuey7nfb000vb3lrxhebueml"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDE2IiwiaWF0IjoxNzkwMjE5MDcwLCJleHAiOjE3OTA4MjM4NzAsInN1YiI6ImNtdWV5N25oNjAwMHdiM2xyd250azVoNmcifQ.P2g2ODideqYDkkdWl5wRHl7rXbVZxu7MxrdNWLK6r8g",
+        "roomId": "cmuey7nh8000xb3lroc0xwwn2"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDE3IiwiaWF0IjoxNzkwMjE5MDcwLCJleHAiOjE3OTA4MjM4NzAsInN1YiI6ImNtdWV5N25qNjAwMHliM2xybHV3bjhwYXEifQ.4rJpjTnDSZP1lNlLNHlBL4YaDB6FV-REK8ATXhqlzOs",
+        "roomId": "cmuey7nja000zb3lrrldbah4e"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDE4IiwiaWF0IjoxNzkwMjE5MDcwLCJleHAiOjE3OTA4MjM4NzAsInN1YiI6ImNtdWV5N25sNTAwMTBiM2xyM3ZpaGRzYjUifQ.TCKTm5QtHJRHtfrWAsbzKIotLY4HBjDtU9vchKpjAxY",
+        "roomId": "cmuey7nl70011b3lrbcjge5ez"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDE5IiwiaWF0IjoxNzkwMjE5MDcwLCJleHAiOjE3OTA4MjM4NzAsInN1YiI6ImNtdWV5N25uMTAwMTJiM2xycTZueGZ4b2EifQ.DPXVeZBpVd3_Fa9nBsHZAqoXAQueAmJNzOhHQanQqVc",
+        "roomId": "cmuey7nn40013b3lr8ma8tmqo"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDIwIiwiaWF0IjoxNzkwMjE5MDcwLCJleHAiOjE3OTA4MjM4NzAsInN1YiI6ImNtdWV5N25veTAwMTRiM2xyanc4YmRjM2wifQ.utIc_1KEqMHIzolQNxWWKjL4fr2_04DTIXYFsjbpg8g",
+        "roomId": "cmuey7noz0015b3lrd7yuac9v"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDIxIiwiaWF0IjoxNzkwMjE5MDcwLCJleHAiOjE3OTA4MjM4NzAsInN1YiI6ImNtdWV5N25xdDAwMTZiM2xybnUyOWZzY3IifQ.mT26ImDqmMB-EfLCq_ZmYFET9XZTEtZ8SMstU1hhjvM",
+        "roomId": "cmuey7nqv0017b3lrg02nog5p"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDIyIiwiaWF0IjoxNzkwMjE5MDcxLCJleHAiOjE3OTA4MjM4NzEsInN1YiI6ImNtdWV5N25zcTAwMThiM2xybjRud20xeDAifQ.x41ZTJ_QayoWIrzc3iYnN5vaqYEirN0x_4bsqP51Hi4",
+        "roomId": "cmuey7nss0019b3lr4w4pt3p6"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDIzIiwiaWF0IjoxNzkwMjE5MDcxLCJleHAiOjE3OTA4MjM4NzEsInN1YiI6ImNtdWV5N251bjAwMWFiM2xyaHVmYTZ0NXIifQ.ElGZCSIIu6WMl0VGax4Xdg2XM9HiD3o628rsWZhV7rU",
+        "roomId": "cmuey7nuq001bb3lr4o0s2y6e"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDI0IiwiaWF0IjoxNzkwMjE5MDcxLCJleHAiOjE3OTA4MjM4NzEsInN1YiI6ImNtdWV5N253azAwMWNiM2xya2RzYzg2NG8ifQ.9ZEBS6ftgQ6NET0iTWrQ40BzddaWaIme7pjKZveUbno",
+        "roomId": "cmuey7nwm001db3lrz6u11kx6"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDI1IiwiaWF0IjoxNzkwMjE5MDcxLCJleHAiOjE3OTA4MjM4NzEsInN1YiI6ImNtdWV5N255ZjAwMWViM2xyY3BjMzJwYXkifQ.jFa2X0odEqb1cZNLBF8OUm5ZindmElCA81gUhS2Jio4",
+        "roomId": "cmuey7nyi001fb3lrq60lhiie"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDI2IiwiaWF0IjoxNzkwMjE5MDcxLCJleHAiOjE3OTA4MjM4NzEsInN1YiI6ImNtdWV5N28wYjAwMWdiM2xyYXE3bjRtcHEifQ.PkU7ImVBV8HGljAHrEXoVWsyOTFRvxyTC3YH7EGo8ns",
+        "roomId": "cmuey7o0d001hb3lrhrguujie"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDI3IiwiaWF0IjoxNzkwMjE5MDcxLCJleHAiOjE3OTA4MjM4NzEsInN1YiI6ImNtdWV5N28yNzAwMWliM2xyOXgxcXF4cmMifQ.GustcjEDFIFePnqXHU-_Rf9h2J5hzbh7vCfkXE0qO2s",
+        "roomId": "cmuey7o29001jb3lrw84qi1ol"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDI4IiwiaWF0IjoxNzkwMjE5MDcxLCJleHAiOjE3OTA4MjM4NzEsInN1YiI6ImNtdWV5N280MzAwMWtiM2xyZGwydHU4dDYifQ.foyKJrJ5UG0ffj-4SkPzcEsgddPQ7358fFkkcYeZeeI",
+        "roomId": "cmuey7o45001lb3lris4o3l4y"
+      },
+      {
+        "cookie": "codesync_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibG9hZDI5IiwiaWF0IjoxNzkwMjE5MDcxLCJleHAiOjE3OTA4MjM4NzEsInN1YiI6ImNtdWV5N281eTAwMW1iM2xyaDR1Z2o5NWsifQ.K52mCQvCriBzPORJmy_Ljdm9SIUW5KmuZ3mRMjOMJcg",
+        "roomId": "cmuey7o60001nb3lrhkt9irng"
+      }
+    ]
+  }
+}

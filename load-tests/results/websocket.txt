@@ -1,0 +1,52 @@
+
+
+  █ THRESHOLDS 
+
+    awareness_broadcast_latency_ms
+    ✓ 'p(95)<200' p(95)=68ms
+
+    ws_session_duration
+    ✓ 'p(95)>55000' p(95)=1m0s
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 152     2.384497/s
+    checks_succeeded...: 100.00% 152 out of 152
+    checks_failed......: 0.00%   0 out of 152
+
+    ✓ signup 201
+    ✓ room 201
+    ✓ join 200
+    ✓ upgraded (101)
+
+    CUSTOM
+    awareness_broadcast_latency_ms...: avg=33.09ms min=1ms     med=29ms    max=179ms   p(90)=43ms    p(95)=68ms   
+    awareness_messages_received......: 144591 2268.268427/s
+    yjs_initial_sync_ms..............: avg=41.52ms min=22ms    med=44ms    max=59ms    p(90)=56ms    p(95)=57.55ms
+
+    HTTP
+    http_req_duration................: avg=35.96ms min=2.64ms  med=40.43ms max=103.8ms p(90)=67.51ms p(95)=69.67ms
+      { expected_response:true }.....: avg=35.96ms min=2.64ms  med=40.43ms max=103.8ms p(90)=67.51ms p(95)=69.67ms
+    http_req_failed..................: 0.00%  0 out of 102
+    http_reqs........................: 102    1.600123/s
+
+    EXECUTION
+    iteration_duration...............: avg=1m0s    min=1m0s    med=1m0s    max=1m0s    p(90)=1m0s    p(95)=1m0s   
+    iterations.......................: 50     0.784374/s
+    vus..............................: 50     min=0         max=50
+    vus_max..........................: 50     min=50        max=50
+
+    NETWORK
+    data_received....................: 8.0 MB 126 kB/s
+    data_sent........................: 244 kB 3.8 kB/s
+
+    WEBSOCKET
+    ws_connecting....................: avg=41.25ms min=20.64ms med=43.83ms max=58.34ms p(90)=55.45ms p(95)=56.94ms
+    ws_msgs_received.................: 147641 2316.115241/s
+    ws_msgs_sent.....................: 3016   47.31344/s
+    ws_session_duration..............: avg=1m0s    min=1m0s    med=1m0s    max=1m0s    p(90)=1m0s    p(95)=1m0s   
+    ws_sessions......................: 50     0.784374/s
+
+
+

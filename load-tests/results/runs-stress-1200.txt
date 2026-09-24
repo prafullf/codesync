@@ -1,0 +1,51 @@
+time="2026-09-24T03:04:55Z" level=warning msg="Insufficient VUs, reached 100 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=runs
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{name:create_run}
+    ✗ 'p(95)<500' p(95)=749.69ms
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+    run_success
+    ✓ 'rate>0.99' rate=100.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 796     11.218667/s
+    checks_succeeded...: 100.00% 796 out of 796
+    checks_failed......: 0.00%   0 out of 796
+
+    ✓ signup 201
+    ✓ room 201
+    ✓ run accepted (202)
+
+    CUSTOM
+    run_success....................: 100.00% 736 out of 736
+    run_turnaround_ms..............: avg=7.32s    min=428ms    med=7.72s    max=15.58s p(90)=14.11s   p(95)=14.92s  
+    runs_completed.................: 736     10.373039/s
+
+    HTTP
+    http_req_duration..............: avg=195.28ms min=1.57ms   med=164.17ms max=2.07s  p(90)=340.96ms p(95)=493.06ms
+      { expected_response:true }...: avg=195.28ms min=1.57ms   med=164.17ms max=2.07s  p(90)=340.96ms p(95)=493.06ms
+      { name:create_run }..........: avg=201.01ms min=4.19ms   med=120.8ms  max=2.07s  p(90)=419.61ms p(95)=749.69ms
+    http_req_failed................: 0.00%   0 out of 18316
+    http_reqs......................: 18316   258.142091/s
+
+    EXECUTION
+    dropped_iterations.............: 465     6.553618/s
+    iteration_duration.............: avg=7.32s    min=427.87ms med=7.72s    max=15.58s p(90)=14.11s   p(95)=14.92s  
+    iterations.....................: 736     10.373039/s
+    vus............................: 16      min=0          max=100
+    vus_max........................: 100     min=40         max=100
+
+    NETWORK
+    data_received..................: 12 MB   171 kB/s
+    data_sent......................: 6.2 MB  88 kB/s
+
+
+
+time="2026-09-24T03:05:41Z" level=error msg="thresholds on metrics 'http_req_duration{name:create_run}' have been crossed"

@@ -8,5 +8,4 @@ coverage
 .DS_Store
 playwright-report
 test-results
-load-tests/results
 .claude/

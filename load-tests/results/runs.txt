@@ -1,0 +1,48 @@
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{name:create_run}
+    ✓ 'p(95)<500' p(95)=15.98ms
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+    run_success
+    ✓ 'rate>0.99' rate=100.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 660     3.624818/s
+    checks_succeeded...: 100.00% 660 out of 660
+    checks_failed......: 0.00%   0 out of 660
+
+    ✓ signup 201
+    ✓ room 201
+    ✓ run accepted (202)
+
+    CUSTOM
+    run_success....................: 100.00% 600 out of 600
+    run_turnaround_ms..............: avg=230.5ms min=111ms    med=217ms    max=1.1s     p(90)=228ms   p(95)=240.05ms
+    runs_completed.................: 600     3.295289/s
+
+    HTTP
+    http_req_duration..............: avg=7.27ms  min=1.54ms   med=4.79ms   max=123.37ms p(90)=11.07ms p(95)=17.86ms 
+      { expected_response:true }...: avg=7.27ms  min=1.54ms   med=4.79ms   max=123.37ms p(90)=11.07ms p(95)=17.86ms 
+      { name:create_run }..........: avg=7.16ms  min=4.19ms   med=5.17ms   max=111.54ms p(90)=10.82ms p(95)=15.98ms 
+    http_req_failed................: 0.00%   0 out of 1905
+    http_reqs......................: 1905    10.462542/s
+
+    EXECUTION
+    iteration_duration.............: avg=230.7ms min=111.47ms med=216.74ms max=1.1s     p(90)=228.3ms p(95)=240.05ms
+    iterations.....................: 600     3.295289/s
+    vus............................: 1       min=0          max=3 
+    vus_max........................: 40      min=40         max=40
+
+    NETWORK
+    data_received..................: 1.1 MB  6.2 kB/s
+    data_sent......................: 735 kB  4.0 kB/s
+
+
+
