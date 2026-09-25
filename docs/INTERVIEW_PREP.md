@@ -191,6 +191,8 @@ Dependencies are injected in one place (`app.ts`), so tests can swap the real qu
 - **Stdin corruption.** Sometimes Python programs failed with a syntax error that made no sense. I printed stderr and saw a JSON string, `{"stream":true,...}`, glued before the user's code. The Docker client library sends its options as an HTTP request body, and Docker was forwarding those bytes into the container's stdin. It was timing-dependent, so it happened only sometimes. I fixed it by framing the input: the worker sends a marker line, and the container ignores everything before it. I added a regression test that runs `sys.exit(3)` five times and checks the exit code is exactly 3.
 - **Race condition on join.** My E2E test failed because opening an invite link called "join" twice at the same time (React StrictMode runs effects twice in development). Both requests tried to insert the membership row, and the second hit a unique-key error, which became a 500. I made join idempotent: if the insert loses the race, just read the existing row. I added a test that sends 5 joins in parallel.
 
+- **Out-of-order updates.** While recording a demo, one browser showed "Queued" while the other showed "Running" for the same run. The HTTP 202 response reached the browser _after_ the worker's "RUNNING" event over the socket, and my code overwrote the newer status with the older one. If a run finished very fast, the Run button could even stay disabled. The fix: a run's status may only move forward (QUEUED → RUNNING → finished), never backwards. The rule is a small tested function in the shared package. Lesson: over a network, messages from different channels can arrive in any order.
+
 **Q29. What would you improve next?**
 
 1. A warm container pool for latency.
