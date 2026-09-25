@@ -4,7 +4,7 @@
 
 ![CodeSync room: two users editing, Bob's cursor visible, shared output panel](docs/screenshot.png)
 
-> **Live demo:** _not deployed yet. See [Deployment](#deployment)._
+> **Live demo:** https://codesync.172-198-73-199.sslip.io (sign up, create a room, open the invite link in a second window)
 
 - **Real-time editing** with a CRDT (Yjs): no conflicts, works offline and syncs on reconnect.
 - **Live cursors and presence**, coloured per user.
@@ -168,29 +168,18 @@ pnpm --filter @codesync/web e2e         # Playwright: two users edit + run
 
 ## Deployment
 
-The worker **must** run on a host with Docker. The simplest production setup is one VM (e.g. EC2 `t3.small`+) running everything, with one reverse proxy so the browser sees a single origin (first-party cookies, no CORS):
+The worker **must** run on a host with Docker, so serverless platforms (Vercel, Render, Railway) can't host it. The live demo runs on **one Azure VM** (Standard_B1ms: 1 vCPU, 2 GB RAM + 4 GB swap, Ubuntu 24.04) with everything in Docker Compose:
+
+- **Caddy** is the only thing exposed to the internet (ports 80/443). It gets a Let's Encrypt certificate automatically, serves the built frontend, and reverse-proxies `/api`, `/yjs` and `/socket.io` to the API. One origin means first-party cookies and no CORS. See [`deploy/Caddyfile`](deploy/Caddyfile).
+- The API, 3 workers, Postgres and Redis stay on the private Docker network ([`deploy/docker-compose.prod.yml`](deploy/docker-compose.prod.yml)).
+- The free [sslip.io](https://sslip.io) wildcard DNS maps `codesync.<ip>.sslip.io` to the VM, so no domain purchase is needed.
 
 ```bash
-# on the VM
-git clone <repo> && cd codesync
-cp .env.example .env   # set JWT_SECRET, COOKIE_SECURE=true, WEB_ORIGIN=https://your.domain
-pnpm i && pnpm build:sandbox && pnpm --filter @codesync/web build
-docker compose --profile app up -d --build
-```
-
-Example `Caddyfile` (automatic HTTPS):
-
-```
-your.domain {
-  handle /api/*       { reverse_proxy localhost:4000 }
-  handle /yjs/*       { reverse_proxy localhost:4000 }
-  handle /socket.io/* { reverse_proxy localhost:4000 }
-  handle {
-    root * /srv/codesync/apps/web/dist
-    try_files {path} /index.html
-    file_server
-  }
-}
+# on the VM (Docker + docker-buildx installed), with the repo copied to ~/codesync
+cp .env.example .env   # set JWT_SECRET, COOKIE_SECURE=true, SITE_ADDRESS=<host>, WEB_ORIGIN=https://<host>
+pnpm --filter @codesync/web build   # or build locally and copy apps/web/dist
+sh sandbox-images/build.sh
+docker compose -f docker-compose.yml -f deploy/docker-compose.prod.yml --profile app up -d --build
 ```
 
 Alternative: frontend on Vercel/Netlify at `app.example.com` with `VITE_API_URL=https://api.example.com`, and the API at `api.example.com` with `WEB_ORIGIN=https://app.example.com`. Both are on the same site, so the `SameSite=Lax` cookie still works. Postgres and Redis can be managed services (RDS, Upstash, …) via `DATABASE_URL` and `REDIS_URL`.
