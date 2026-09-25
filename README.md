@@ -219,7 +219,3 @@ docs/            architecture, benchmarks, interview prep
 - **Prometheus metrics** (`prom-client`): queue depth, run duration histogram, active rooms.
 - **stdin for programs**, multiple files per room, more languages.
 - **Viewer role management** in the UI (the API and Yjs server already enforce read-only viewers).
-
----
-
-Built as a portfolio project with AI assistance (Claude). The design decisions, trade-offs and test strategy are documented above and in [docs/INTERVIEW_PREP.md](docs/INTERVIEW_PREP.md).
