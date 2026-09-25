@@ -2,7 +2,7 @@
 
 **A real-time collaborative code editor: several people edit the same file with live cursors, and anyone can hit Run to execute it in an isolated Docker sandbox. Everyone in the room sees the output.**
 
-![CodeSync room: two users editing, Bob's cursor visible, shared output panel](docs/screenshot.png)
+![Demo: two users (left and right) edit the same file live, run it, and both see the output; an infinite loop is stopped after 5 s](docs/demo.gif)
 
 > **Live demo:** https://codesync.172-198-73-199.sslip.io (sign up, create a room, open the invite link in a second window)
 
