@@ -33,3 +33,17 @@ export function allowedSourceStatuses(to: RunStatus): RunStatus[] {
 export function isTerminal(status: RunStatus): boolean {
   return TERMINAL_RUN_STATUSES.includes(status);
 }
+
+const PROGRESS: Record<RunStatus, number> = { QUEUED: 0, RUNNING: 1, SUCCESS: 2, ERROR: 2, TIMEOUT: 2 };
+
+/**
+ * Updates can arrive out of order on the client (e.g. the 202 response for a
+ * run lands after the worker's RUNNING/SUCCESS socket event). A run must never
+ * move backwards, and a finished run only accepts the same final status again
+ * (e.g. the full row from history filling in stdout).
+ */
+export function shouldApplyRunUpdate(current: RunStatus | undefined, next: RunStatus): boolean {
+  if (!current) return true;
+  if (isTerminal(current)) return next === current;
+  return PROGRESS[next] >= PROGRESS[current];
+}

@@ -4,6 +4,7 @@ import Editor from '@monaco-editor/react';
 import { toast } from 'sonner';
 import {
   isTerminal,
+  shouldApplyRunUpdate,
   LANGUAGES,
   LANGUAGE_LABELS,
   MONACO_LANGUAGE,
@@ -39,6 +40,8 @@ export function RoomPage() {
   const [history, setHistory] = useState<Run[]>([]);
   const [tab, setTab] = useState<'output' | 'history'>('output');
   const [submitting, setSubmitting] = useState(false);
+  /** Runs we've already seen finish, so a late 202 can't mark them as in flight again. */
+  const finishedRunsRef = useRef(new Set<string>());
 
   // Load the room; if we're not a member yet, the link is an invite: join it.
   useEffect(() => {
@@ -86,7 +89,11 @@ export function RoomPage() {
 
   const applyRunUpdate = useCallback(
     (update: RunView) => {
-      setRuns((prev) => ({ ...prev, [update.runId]: { ...prev[update.runId], ...update } }));
+      setRuns((prev) => {
+        const current = prev[update.runId];
+        if (current && !shouldApplyRunUpdate(current.status, update.status)) return prev;
+        return { ...prev, [update.runId]: { ...current, ...update } };
+      });
       if (update.status === 'QUEUED') {
         setActiveRunId(update.runId);
         setTab('output');
@@ -94,6 +101,7 @@ export function RoomPage() {
         setActiveRunId((current) => current ?? update.runId);
       }
       if (isTerminal(update.status)) {
+        finishedRunsRef.current.add(update.runId);
         setMyPendingRunId((pending) => (pending === update.runId ? null : pending));
         refreshHistory();
       }
@@ -132,8 +140,9 @@ export function RoomPage() {
     setSubmitting(true);
     try {
       const { runId } = await api.createRun(roomId, { language: room.language, code });
-      setMyPendingRunId(runId);
       applyRunUpdate({ runId, status: 'QUEUED', userId: user.id, userName: user.name });
+      // The result may already have arrived over the socket before this response.
+      if (!finishedRunsRef.current.has(runId)) setMyPendingRunId(runId);
     } catch (err) {
       if (err instanceof ApiError && err.status === 429) {
         toast.error(`Rate limit reached (10 runs/min). Try again in ${err.retryAfterSeconds ?? 60}s.`);
