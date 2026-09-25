@@ -1,0 +1,39 @@
+# Production overrides for a single VM. Use together with the base file:
+#   docker compose -f docker-compose.yml -f deploy/docker-compose.prod.yml --profile app up -d --build
+# Only Caddy is exposed to the internet (80/443); everything else stays on the Docker network.
+services:
+  postgres:
+    ports: !reset []
+    restart: unless-stopped
+
+  redis:
+    ports: !reset []
+    restart: unless-stopped
+
+  server:
+    ports: !reset []
+    restart: unless-stopped
+
+  worker:
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2-alpine
+    profiles: ['app']
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:?set SITE_ADDRESS in .env}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./apps/web/dist:/srv/web:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - server
+
+volumes:
+  caddy_data:
+  caddy_config:

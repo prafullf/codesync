@@ -1,0 +1,17 @@
+# Single public entrypoint: automatic HTTPS (Let's Encrypt), static frontend,
+# and a reverse proxy for the API + both WebSocket channels. One origin means
+# first-party cookies and no CORS.
+{$SITE_ADDRESS} {
+	encode gzip
+
+	@backend path /api/* /yjs/* /socket.io/* /health /ready
+	handle @backend {
+		reverse_proxy server:4000
+	}
+
+	handle {
+		root * /srv/web
+		try_files {path} /index.html
+		file_server
+	}
+}
