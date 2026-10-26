@@ -5,6 +5,8 @@
 ![Demo: two users (left and right) edit the same file live, run it, and both see the output; an infinite loop is stopped after 5 s](docs/demo.gif)
 
 > **Live demo:** https://codesync.172-198-73-199.sslip.io (sign up, create a room, open the invite link in a second window)
+>
+> The demo VM is stopped when idle to save cost; the GIF above shows it running.
 
 - **Real-time editing** with a CRDT (Yjs): no conflicts, works offline and syncs on reconnect.
 - **Live cursors and presence**, coloured per user.
